@@ -1,0 +1,122 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffd2fb"
+    tools:context="com.fuzple.headup.DigitalClockActivity">
+
+    <!-- The primary full-screen view. This can be replaced with whatever view
+         is needed to present your content, e.g. VideoView, SurfaceView,
+         TextureView, etc. -->
+    <TextClock
+        android:id="@+id/textClock"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true"
+        android:alpha="1"
+        android:format24Hour="AA:hh:mm:ss"
+        android:gravity="center"
+        android:keepScreenOn="true"
+        android:maxLines="1"
+        android:textColor="@android:color/white"
+        android:textSize="80sp"
+        android:textStyle="bold" />
+
+    <TextView
+        style="@style/DigitalClockDayStyle"
+        android:id="@+id/textMon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textClock"
+        android:layout_toStartOf="@+id/textTue"
+        android:text="@string/textMon" />
+
+    <TextView
+        style="@style/DigitalClockDayStyle"
+        android:id="@+id/textTue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textClock"
+        android:layout_toStartOf="@+id/textWed"
+        android:text="@string/textTue" />
+
+    <TextView
+        style="@style/DigitalClockDayStyle"
+        android:id="@+id/textWed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textClock"
+        android:layout_toStartOf="@+id/textThur"
+        android:text="@string/textWed" />
+
+    <TextView
+        style="@style/DigitalClockDayStyle"
+        android:id="@+id/textThur"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textClock"
+        android:layout_centerHorizontal="true"
+        android:text="@string/textThur" />
+
+    <TextView
+        style="@style/DigitalClockDayStyle"
+        android:id="@+id/textFri"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textClock"
+        android:layout_toEndOf="@+id/textThur"
+        android:text="@string/textFri" />
+
+    <TextView
+        style="@style/DigitalClockDayStyle"
+        android:id="@+id/textSat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textClock"
+        android:layout_toEndOf="@+id/textFri"
+        android:text="@string/textSat" />
+
+    <TextView
+        style="@style/DigitalClockDayStyle"
+        android:id="@+id/textSun"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textClock"
+        android:layout_toEndOf="@+id/textSat"
+        android:text="@string/textSun" />
+
+    <TextView
+        android:id="@+id/weather_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="14dp"
+        android:layout_marginEnd="16dp"
+        android:text="TextView"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textSize="30sp" />
+
+    <TextView
+        android:id="@+id/current_temperature_field"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/weather_icon"
+        android:layout_alignEnd="@+id/weather_icon"/>
+
+    <!--
+        <TextView
+            android:id="@+id/digitalClockText"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:keepScreenOn="true"
+            android:text="@string/dummy_content"
+            android:textColor="#33b5e5"
+            android:textSize="50sp"
+            android:textStyle="bold" /> -->
+    <!-- This FrameLayout insets its children based on system windows using
+         android:fitsSystemWindows. -->
+
+</RelativeLayout>

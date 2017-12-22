@@ -1,3 +1,26 @@
 <resources>
     <string name="app_name">HeadUp</string>
+
+    <string name="title_activity_digital_clock">DigitalClockActivity</string>
+    <string name="textMon">Mon</string>
+    <string name="textTue">Tue</string>
+    <string name="textWed">Wed</string>
+    <string name="textThur">Thur</string>
+    <string name="textFri">Fri</string>
+    <string name="textSat">Sat</string>
+    <string name="textSun">Sun</string>
+
+    <string name="open_weather_maps_app_id">6dc1cda2fe5f32ad3a1bac471325d216</string>
+
+    <string name="weather_sunny">&#xf00d;</string>
+    <string name="weather_clear_night">&#xf02e;</string>
+
+    <string name="weather_foggy">&#xf014;</string>
+    <string name="weather_cloudy">&#xf013;</string>
+    <string name="weather_rainy">&#xf019;</string>
+    <string name="weather_snowy">&#xf01b;</string>
+    <string name="weather_thunder">&#xf01e;</string>
+    <string name="weather_drizzle">&#xf01c;</string>
+
+    <string name="place_not_found">Sorry, no weather data found.</string>
 </resources>
