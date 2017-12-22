@@ -1,11 +1,17 @@
 package com.fuzple.headup;
 
 import android.app.AlarmManager;
+import android.app.Fragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.app.PendingIntent;
 import android.content.Intent;
+import android.nfc.FormatException;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import android.support.annotation.Nullable;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -16,10 +22,10 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 /**
- * Created by user on 2017-12-12.
+ * Created by user on 2017-12-15.
  */
 
-public class alregister_Activity extends AppCompatActivity {
+public class alarm_re_fragment extends Fragment{
 
     Spinner t_sp,d_sp;
     Button set_btn,reset_btn,recan_btn,select_alarm;
@@ -30,50 +36,60 @@ public class alregister_Activity extends AppCompatActivity {
     AlarmManager am;
     Calendar calendar;
     PendingIntent pender;
+    Fragment frag;
+    FragmentTransaction fragmentTransaction;
+    FragmentManager fm;
 
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.alarm_re_fragment);
+    @Nullable
+    @Override
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
 
-        select_alarm = (Button)findViewById(R.id.select_alarm);
+        View v =inflater.inflate(R.layout.alarm_re_fragment,container,false);
+        select_alarm = (Button)v.findViewById(R.id.select_alarm);
 
-        t_sp = (Spinner)findViewById(R.id.t_sp);
-        d_sp = (Spinner)findViewById(R.id.d_sp);
-        m_btn = (Button)findViewById(R.id.m_select);
+        frag = this;
+        fm = getActivity().getFragmentManager();
+        fragmentTransaction = fm.beginTransaction();
 
-        set_btn = (Button)findViewById(R.id.set_btn);
-        reset_btn = (Button)findViewById(R.id.reset_btn);
-        recan_btn = (Button)findViewById(R.id.recan_btn);
+        t_sp = (Spinner)v.findViewById(R.id.t_sp);
+        d_sp = (Spinner)v.findViewById(R.id.d_sp);
+        m_btn = (Button)v.findViewById(R.id.m_select);
+
+        set_btn = (Button)v.findViewById(R.id.set_btn);
+        reset_btn = (Button)v.findViewById(R.id.reset_btn);
+        recan_btn = (Button)v.findViewById(R.id.recan_btn);
+
         calendar =Calendar.getInstance();
-        Intent intent = new Intent(this,AlarmReceiver.class);
-        pender = PendingIntent.getBroadcast(this, 0, intent, 0);
+        Intent intent = new Intent(getActivity(),AlarmReceiver.class);
+
+        pender = PendingIntent.getBroadcast(getActivity(), 0, intent, 0);
+
         select_alarm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                try
-                {
-                    if (Integer.parseInt(t) >= calendar.get(calendar.HOUR_OF_DAY) && Integer.parseInt(d) >= calendar.get(calendar.MINUTE)) {
-                        Intent intent = new Intent();
-                        intent.putExtra("t", t);
-                        intent.putExtra("d", d);
-                        setResult(222, intent);
-                        am = (AlarmManager) getSystemService(ALARM_SERVICE);
+                try {
+                    if (Integer.parseInt(t) > calendar.get(calendar.HOUR_OF_DAY) || (Integer.parseInt(t) == calendar.get(calendar.HOUR_OF_DAY) && Integer.parseInt(d) >= calendar.get(calendar.MINUTE))) {
+
+                        ((MainActivity) getActivity()).addadapter(t, d);
+
+                        am = (AlarmManager) getActivity().getSystemService(getActivity().ALARM_SERVICE);
 
                         calendar.set(calendar.get(calendar.YEAR), calendar.get(calendar.MONTH), calendar.get(calendar.DATE), Integer.parseInt(t), Integer.parseInt(d), 0);
                         am.setExact(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pender);
 
-                        finish();
+                        fragmentTransaction.replace(R.id.main_container, ((MainActivity) getActivity()).al_frag);
+                        fragmentTransaction.commit();
                     } else {
-                        Toast.makeText(alregister_Activity.this, "이미 지난 시간입니다", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), "잘못된 시간", Toast.LENGTH_SHORT).show();
                     }
                 }
-                catch(Exception e)
+                catch(NumberFormatException e)
                 {
-                    Toast.makeText(alregister_Activity.this, "이미 지난 시간입니다", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "시간 선택", Toast.LENGTH_SHORT).show();
                 }
+
             }
         });
-
         t_list = new ArrayList<>();
         d_list = new ArrayList<>();
 
@@ -89,9 +105,9 @@ public class alregister_Activity extends AppCompatActivity {
             d_list.add(Integer.toString(k));
         }
 
-        t_adapter = new ArrayAdapter(this, R.layout.support_simple_spinner_dropdown_item, t_list);
+        t_adapter = new ArrayAdapter(getActivity(), R.layout.support_simple_spinner_dropdown_item, t_list);
         t_sp.setAdapter(t_adapter);
-        d_adapter = new ArrayAdapter(this, R.layout.support_simple_spinner_dropdown_item, d_list);
+        d_adapter = new ArrayAdapter(getActivity(), R.layout.support_simple_spinner_dropdown_item, d_list);
         d_sp.setAdapter(d_adapter);
 
         t_sp.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -103,7 +119,7 @@ public class alregister_Activity extends AppCompatActivity {
                     if (Integer.parseInt(t_sp.getItemAtPosition(i).toString()) >= calendar.get(calendar.HOUR_OF_DAY)) {
                         t = t_sp.getItemAtPosition(i).toString();
                     } else {
-                        Toast.makeText(alregister_Activity.this, "이미 지난 시간입니다", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), "이미 지난 시간입니다", Toast.LENGTH_SHORT).show();
                     }
                 }
             }
@@ -120,12 +136,7 @@ public class alregister_Activity extends AppCompatActivity {
             {
                 if(i!=0)
                 {
-                    if (Integer.parseInt(d_sp.getItemAtPosition(i).toString()) >= calendar.get(calendar.MINUTE)) {
-                        d = d_sp.getItemAtPosition(i).toString();
-
-                    } else {
-                        Toast.makeText(alregister_Activity.this, "이미 지난 시간입니다.", Toast.LENGTH_SHORT).show();
-                    }
+                    d = d_sp.getItemAtPosition(i).toString();
                 }
             }
 
@@ -138,8 +149,7 @@ public class alregister_Activity extends AppCompatActivity {
         m_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(alregister_Activity.this, MyMusicPlayer.class);
-                startActivity(i);
+
             }
         });
 
@@ -152,14 +162,18 @@ public class alregister_Activity extends AppCompatActivity {
         reset_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                fragmentTransaction.detach(((MainActivity) getActivity()).al_r_frag).attach(((MainActivity) getActivity()).al_r_frag).commit();
             }
         });
         recan_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                finish();
+                FragmentTransaction fragmentTransaction = getActivity().getFragmentManager().beginTransaction();
+                fragmentTransaction.replace(R.id.main_container, ((MainActivity) getActivity()).al_frag);
+                fragmentTransaction.commit();
             }
         });
+
+        return v;
     }
 }

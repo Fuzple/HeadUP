@@ -17,6 +17,7 @@
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:id="@+id/select_alarm"
                 android:text="알 람 설 정 하 기"/>
         </LinearLayout>
 
@@ -55,18 +56,21 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
+                android:id="@+id/set_btn"
                 android:layout_weight="1"
                 android:text="설 정"/>
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
+                android:id="@+id/reset_btn"
                 android:layout_weight="1"
                 android:text="초 기 화"/>
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
+                android:id="@+id/recan_btn"
                 android:layout_weight="1"
                 android:text="취 소"/>
         </LinearLayout>
