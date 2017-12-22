@@ -30,7 +30,7 @@ public class DigitalClockActivity extends AppCompatActivity {
         handler = new Handler();
     }
 
-    TextView textDay;
+    TextView textDay; //요일 표시용
 
 
     @SuppressLint("MissingPermission")
