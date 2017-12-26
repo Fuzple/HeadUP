@@ -15,14 +15,14 @@ public class RemoteFetch {
     private static final String OPEN_WEATHER_MAP_API =
             "http://api.openweathermap.org/data/2.5/weather?q=%s,kr&units=metric";
 
-    public static JSONObject getJSON(String city){
+    public static JSONObject getJSON(double lat, double lon){
         try {/*
             URL url = new URL(String.format(OPEN_WEATHER_MAP_API, city));
             HttpURLConnection connection = (HttpURLConnection)url.openConnection();
 
             connection.addRequestProperty("x-api-key", "@string/open_weather_maps_app_id"); */
 
-            URL url = new URL("http://api.openweathermap.org/data/2.5/weather?q="+city+",kr&units=metric&APPID=6dc1cda2fe5f32ad3a1bac471325d216");
+            URL url = new URL("http://api.openweathermap.org/data/2.5/weather?lat="+lat+"&lon="+lon+"&units=metric&APPID=6dc1cda2fe5f32ad3a1bac471325d216");
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 
             BufferedReader reader = new BufferedReader(

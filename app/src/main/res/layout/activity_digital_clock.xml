@@ -114,6 +114,23 @@
         android:layout_alignParentTop="true"
         tools:layout="@layout/status_fragment" />
 
+    <TextView
+        style="@style/DigitalClockDayStyle"
+        android:id="@+id/textWi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textThur"
+        android:layout_centerHorizontal="true"
+        android:text="위도" />
+    <TextView
+        style="@style/DigitalClockDayStyle"
+        android:id="@+id/textGyo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textWi"
+        android:layout_centerHorizontal="true"
+        android:text="경도" />
+
     <!--
         <TextView
             android:id="@+id/digitalClockText"
