@@ -1,43 +1,53 @@
 package com.fuzple.headup;
 
-import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
-import android.widget.Button;
-import android.widget.ListView;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements alset_fragment.datalistener {
 
-    status_fragment st_frag;
-    alarm_fragment al_frag;
-    alarm_re_fragment al_r_frag;
+    al_fragment al_f;
+    status_fragment s_f;
     static Myadapter adapter;
-
+    FragmentManager fm;
+    FragmentTransaction tranc;
+    int alarm_num =0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.alarm);
+        setContentView(R.layout.activity_main);
+        fm = getFragmentManager();
+        tranc = fm.beginTransaction();
 
-        st_frag = new status_fragment();
-        al_frag = new alarm_fragment();
-        al_r_frag = new alarm_re_fragment();
-        FragmentManager fm = getFragmentManager();
-        FragmentTransaction tranc = fm.beginTransaction();
+        al_f = new al_fragment();
+        s_f = new status_fragment();
 
         adapter = new Myadapter();
-        tranc.replace(R.id.status_container,st_frag);
-        tranc.replace(R.id.main_container,al_frag);
+        tranc.replace(R.id.status_container,s_f);
+        tranc.replace(R.id.main_container,al_f);
         tranc.commit();
     }
 
-    public void addadapter(String t,String d)
+    @Override
+    public void listitemlistener(String s, int time, int minute, String day, int imp, int imm, int snz, int ok_cancel) {
+
+        Bundle bundle = new Bundle();
+        bundle.putString("memo",s);
+        bundle.putInt("time",time);
+        bundle.putInt("minute",minute);
+        bundle.putString("day",day);
+        bundle.putInt("imp",imp);
+        bundle.putInt("imm",imm);
+        bundle.putInt("snz",snz);
+        bundle.putInt("ok_cancel",ok_cancel);
+
+        al_f.setArguments(bundle);
+    }
+
+    /*public void addadapter(String t,String d)
     {
         adapter.addItem(t,d);
         adapter.notifyDataSetChanged();
-    }
-
+    }*/
 }

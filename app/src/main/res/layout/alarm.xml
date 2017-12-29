@@ -1,28 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools">
+    android:orientation="vertical">
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="4"
+        android:orientation="vertical">
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            android:id="@+id/a_image"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:id="@+id/t_timer"/>
+
+    </FrameLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:layout_weight="5">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
-        <FrameLayout
-            android:id="@+id/status_container"
+        >
+        <ListView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="20"
-            >
-
-        </FrameLayout>
-
-        <FrameLayout
-            android:id="@+id/main_container"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            >
-
-        </FrameLayout>
+            android:id="@+id/m_listview">
+        </ListView>
     </LinearLayout>
-</android.support.constraint.ConstraintLayout>
+    </ScrollView>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:layout_margin="5dp"
+        android:layout_weight="7">
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="타이머"
+            android:id="@+id/timer"
+            android:layout_weight="1"/>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"/>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="알람 설정"
+            android:id="@+id/al_set"
+            android:layout_weight="1"/>
+    </LinearLayout>
+</LinearLayout>
