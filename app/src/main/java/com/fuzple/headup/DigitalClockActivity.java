@@ -204,7 +204,7 @@ public class DigitalClockActivity extends AppCompatActivity {
                     GlideApp.with(this).asGif().load(R.drawable.rei).placeholder(R.drawable.mirei).centerCrop().into(iv);
                     break;
                 case 7:
-                    icon = this.getString(R.string.weather_foggy);     //비 Rain
+                    icon = this.getString(R.string.weather_foggy);     //안개 Atmosphere
                     GlideApp.with(this).asGif().load(R.drawable.sumire2).placeholder(R.drawable.mirei).centerCrop().into(iv);
                     break;
                 case 8:
