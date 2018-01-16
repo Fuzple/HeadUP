@@ -9,144 +9,159 @@
     <!-- The primary full-screen view. This can be replaced with whatever view
          is needed to present your content, e.g. VideoView, SurfaceView,
          TextureView, etc. -->
-    <ImageView
-        android:id="@+id/background_image"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:cropToPadding="false" />
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
+        android:orientation="vertical"
+        >
         <fragment
             android:id="@+id/fragment"
             android:name="com.fuzple.headup.status_fragment"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
+            android:layout_weight="20"
             tools:layout="@layout/status_fragment" />
-        
-        <TextClock
-            android:id="@+id/textClock"
+
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_centerVertical="true"
-            android:alpha="1"
-            android:format24Hour="AA:hh:mm:ss"
-            android:gravity="center"
-            android:keepScreenOn="true"
-            android:maxLines="1"
-            android:textColor="@android:color/white"
-            android:textSize="80sp"
-            android:textStyle="bold" />
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+                <ImageView
+                    android:id="@+id/background_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:cropToPadding="false" />
 
-        <TextView
-            android:id="@+id/textDay2"
-            style="@style/DigitalClockDayStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/textClock"
-            android:layout_toStartOf="@+id/textDay3"
-            android:text="@string/textMon" />
-
-        <TextView
-            android:id="@+id/textDay3"
-            style="@style/DigitalClockDayStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/textClock"
-            android:layout_toStartOf="@+id/textDay4"
-            android:text="@string/textTue" />
-
-        <TextView
-            android:id="@+id/textDay4"
-            style="@style/DigitalClockDayStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/textClock"
-            android:layout_toStartOf="@+id/textDay5"
-            android:text="@string/textWed" />
-        
-        <TextView
-            android:id="@+id/textDay5"
-            style="@style/DigitalClockDayStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/textClock"
-            android:layout_centerHorizontal="true"
-            android:text="@string/textThur" />
-
-        <TextView
-            android:id="@+id/textDay6"
-            style="@style/DigitalClockDayStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/textClock"
-            android:layout_toEndOf="@+id/textDay5"
-            android:text="@string/textFri" />
-
-        <TextView
-            android:id="@+id/textDay7"
-            style="@style/DigitalClockDayStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/textClock"
-            android:layout_toEndOf="@+id/textDay6"
-            android:text="@string/textSat" />
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true">
 
 
-        <TextView
-            android:id="@+id/textDay1"
-            style="@style/DigitalClockDayStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/textClock"
-            android:layout_toEndOf="@+id/textDay7"
-            android:text="@string/textSun" />
 
-        <TextView
-            android:id="@+id/current_temperature_field"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_above="@+id/weather_icon"
-            android:layout_alignEnd="@+id/weather_icon" />
-        
-        <TextView
-            android:id="@+id/weather_icon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginBottom="14dp"
-            android:layout_marginEnd="16dp"
-            android:text="@string/weather_sunny"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textSize="30sp" />
-        
-        <TextView
-            android:id="@+id/textWi"
-            style="@style/DigitalClockDayStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/textDay5"
-            android:layout_centerHorizontal="true"
-            android:text="위도" />
+                    <TextClock
+                        android:id="@+id/textClock"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+                        android:alpha="1"
+                        android:format24Hour="AA:hh:mm:ss"
+                        android:gravity="center"
+                        android:keepScreenOn="true"
+                        android:maxLines="1"
+                        android:textColor="@android:color/white"
+                        android:textSize="80sp"
+                        android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/textGyo"
-            style="@style/DigitalClockDayStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/textWi"
-            android:layout_centerHorizontal="true"
-            android:text="경도" />
-        
+                    <TextView
+                        android:id="@+id/textDay2"
+                        style="@style/DigitalClockDayStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/textClock"
+                        android:layout_toStartOf="@+id/textDay3"
+                        android:text="@string/textMon" />
 
-    </RelativeLayout>
+                    <TextView
+                        android:id="@+id/textDay3"
+                        style="@style/DigitalClockDayStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/textClock"
+                        android:layout_toStartOf="@+id/textDay4"
+                        android:text="@string/textTue" />
 
+                    <TextView
+                        android:id="@+id/textDay4"
+                        style="@style/DigitalClockDayStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/textClock"
+                        android:layout_toStartOf="@+id/textDay5"
+                        android:text="@string/textWed" />
+
+                    <TextView
+                        android:id="@+id/textDay5"
+                        style="@style/DigitalClockDayStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/textClock"
+                        android:layout_centerHorizontal="true"
+                        android:text="@string/textThur" />
+
+                    <TextView
+                        android:id="@+id/textDay6"
+                        style="@style/DigitalClockDayStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/textClock"
+                        android:layout_toEndOf="@+id/textDay5"
+                        android:text="@string/textFri" />
+
+                    <TextView
+                        android:id="@+id/textDay7"
+                        style="@style/DigitalClockDayStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/textClock"
+                        android:layout_toEndOf="@+id/textDay6"
+                        android:text="@string/textSat" />
+
+
+                    <TextView
+                        android:id="@+id/textDay1"
+                        style="@style/DigitalClockDayStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/textClock"
+                        android:layout_toEndOf="@+id/textDay7"
+                        android:text="@string/textSun" />
+
+                    <TextView
+                        android:id="@+id/current_temperature_field"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_above="@+id/weather_icon"
+                        android:layout_alignEnd="@+id/weather_icon" />
+
+                    <TextView
+                        android:id="@+id/weather_icon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginBottom="14dp"
+                        android:layout_marginEnd="16dp"
+                        android:text="@string/weather_sunny"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textSize="30sp" />
+
+                    <TextView
+                        android:id="@+id/textWi"
+                        style="@style/DigitalClockDayStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/textDay5"
+                        android:layout_centerHorizontal="true"
+                        android:text="위도" />
+
+                    <TextView
+                        android:id="@+id/textGyo"
+                        style="@style/DigitalClockDayStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/textWi"
+                        android:layout_centerHorizontal="true"
+                        android:text="경도" />
+
+
+                </RelativeLayout>
+        </RelativeLayout>
+    </LinearLayout>
     <!--
         <TextView
             android:id="@+id/digitalClockText"

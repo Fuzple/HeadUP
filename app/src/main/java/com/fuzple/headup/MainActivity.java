@@ -4,6 +4,7 @@ import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity implements alset_fragment.datalistener {
 
@@ -12,6 +13,7 @@ public class MainActivity extends AppCompatActivity implements alset_fragment.da
     static Myadapter adapter;
     FragmentManager fm;
     FragmentTransaction tranc;
+
     int alarm_num =0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +28,7 @@ public class MainActivity extends AppCompatActivity implements alset_fragment.da
         adapter = new Myadapter();
         tranc.replace(R.id.status_container,s_f);
         tranc.replace(R.id.main_container,al_f);
+
         tranc.commit();
     }
 

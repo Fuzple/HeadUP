@@ -1,10 +1,12 @@
 package com.fuzple.headup;
 
 import android.Manifest;
+import android.app.FragmentTransaction;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.location.Location;
+import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -14,6 +16,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 import org.json.JSONObject;
@@ -25,7 +28,9 @@ import java.util.TimerTask;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 
 public class DigitalClockActivity extends AppCompatActivity {
 
@@ -106,15 +111,16 @@ public class DigitalClockActivity extends AppCompatActivity {
         }
         // 위치 정보 + 날씨 업데이트
         mFusedLocationClient.getLastLocation()
-                .addOnSuccessListener(this, new OnSuccessListener<Location>() {
+                .addOnCompleteListener(this, new OnCompleteListener<Location>() {
                     @Override
-                    public void onSuccess(Location location) {
-                        if (location != null) {
+                    public void onComplete(@NonNull Task<Location> task) {
+                        if (task != null) {
+
                             wi = (TextView) findViewById(R.id.textWi);
                             gi = (TextView) findViewById(R.id.textGyo);
-                            wi.setText("위도 : " + location.getLatitude());
-                            gi.setText("경도 : " + location.getLongitude());
-                            updateWeatherData(location.getLatitude(), location.getLongitude());
+                            wi.setText("위도 : " + task.getResult().getLatitude());
+                            gi.setText("경도 : " + task.getResult().getLongitude());
+                            updateWeatherData(task.getResult().getLatitude(), task.getResult().getLongitude());
                         }
                     }
                 });
